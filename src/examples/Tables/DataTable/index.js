@@ -39,6 +39,8 @@ import MDPagination from "components/MDPagination";
 import DataTableHeadCell from "examples/Tables/DataTable/DataTableHeadCell";
 import DataTableBodyCell from "examples/Tables/DataTable/DataTableBodyCell";
 import Card from "@mui/material/Card";
+import MDButton from "components/MDButton";
+import Model from "components/Model";
 
 function DataTable({
   entriesPerPage,
@@ -193,7 +195,7 @@ function DataTable({
           </MDTypography>
 
           {canSearch && (
-            <MDBox width="12rem" ml="auto">
+            <MDBox width="12rem" ml="auto" style={{ marginRight: "20px" }}>
               <MDInput
                 style={{ backgroundColor: "white" }}
                 placeholder="Search..."
@@ -207,6 +209,8 @@ function DataTable({
               />
             </MDBox>
           )}
+
+          <Model open={true} />
         </MDBox>
       ) : null}
       <Table {...getTableProps()}>
