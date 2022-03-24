@@ -41,6 +41,7 @@ import DataTableBodyCell from "examples/Tables/DataTable/DataTableBodyCell";
 import Card from "@mui/material/Card";
 import MDButton from "components/MDButton";
 import Model from "components/Model";
+import AddEmployeeModel from "components/Model/AddEmployeeModel";
 
 function DataTable({
   entriesPerPage,
@@ -52,6 +53,7 @@ function DataTable({
   noEndBorder,
   title,
 }) {
+  console.log("----titile -----", title);
   const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
   const entries = entriesPerPage.entries
     ? entriesPerPage.entries.map((el) => el.toString())
@@ -120,6 +122,9 @@ function DataTable({
     setGlobalFilter(value || undefined);
   }, 100);
 
+  //open Employee model
+  const [openModel, setOpenModel] = useState(false);
+
   // A function that sets the sorted value for the table
   const setSortedValue = (column) => {
     let sortedValue;
@@ -148,7 +153,7 @@ function DataTable({
   } else {
     entriesEnd = pageSize * (pageIndex + 1);
   }
-
+  console.log("---open status--", openModel);
   return (
     <TableContainer sx={{ boxShadow: "none" }}>
       {entriesPerPage || canSearch ? (
@@ -209,6 +214,7 @@ function DataTable({
               />
             </MDBox>
           )}
+          {openModel && <AddEmployeeModel Open={openModel} />}
 
           <Model open={true} />
         </MDBox>
@@ -234,7 +240,11 @@ function DataTable({
           {page.map((row, key) => {
             prepareRow(row);
             return (
-              <TableRow {...row.getRowProps()}>
+              <TableRow
+                {...row.getRowProps()}
+                onClick={() => setOpenModel(true)}
+                // style={{ backgroundColor: "green" }}
+              >
                 {row.cells.map((cell) => (
                   <DataTableBodyCell
                     noBorder={noEndBorder && rows.length - 1 === key}
@@ -244,6 +254,7 @@ function DataTable({
                     {cell.render("Cell")}
                   </DataTableBodyCell>
                 ))}
+                {/* <Model open={true} /> */}
               </TableRow>
             );
           })}

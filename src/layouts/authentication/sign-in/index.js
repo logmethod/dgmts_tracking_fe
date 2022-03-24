@@ -102,9 +102,11 @@ function Basic() {
             {/*  </MDTypography>*/}
             {/*</MDBox>*/}
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
-                sign in
-              </MDButton>
+              <Link to="/dashboard">
+                <MDButton variant="gradient" color="info" fullWidth>
+                  sign in
+                </MDButton>
+              </Link>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
