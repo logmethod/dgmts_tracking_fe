@@ -42,7 +42,7 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox color="dark" style={{ height: "1025px" }}>
+      <MDBox color="dark" style={{ height: "1025px", width: "500px" }}>
         <MapContainer />
       </MDBox>
 
