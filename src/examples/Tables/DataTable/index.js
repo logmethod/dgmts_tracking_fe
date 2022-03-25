@@ -42,6 +42,8 @@ import Card from "@mui/material/Card";
 import MDButton from "components/MDButton";
 import Model from "components/Model";
 import AddEmployeeModel from "components/Model/AddEmployeeModel";
+import * as React from "react";
+import FormDialog from "components/Model";
 
 function DataTable({
   entriesPerPage,
@@ -104,6 +106,15 @@ function DataTable({
     </MDPagination>
   ));
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   // Handler for the input to set the pagination index
   const handleInputPagination = ({ target: { value } }) =>
     value > pageOptions.length || value < 0 ? gotoPage(0) : gotoPage(Number(value));
@@ -194,11 +205,9 @@ function DataTable({
               </MDTypography>
             </MDBox>
           )}
-
           <MDTypography variant="h6" color="white">
             {title ? title : "Title "}
           </MDTypography>
-
           {canSearch && (
             <MDBox width="12rem" ml="auto" style={{ marginRight: "20px" }}>
               <MDInput
@@ -214,11 +223,14 @@ function DataTable({
               />
             </MDBox>
           )}
+          <MDButton onClick={handleClickOpen} variant="gradient">
+            Add New {title}
+          </MDButton>
           {openModel && <AddEmployeeModel Open={openModel} />}
-
-          <Model open={true} />
+          {title === "Tasks" && <FormDialog Open={open} handleClickOpen={handleClickOpen} />}
         </MDBox>
       ) : null}
+
       <Table {...getTableProps()}>
         <MDBox component="thead">
           {headerGroups.map((headerGroup) => (

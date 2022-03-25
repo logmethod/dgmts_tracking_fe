@@ -9,28 +9,27 @@ import DialogTitle from "@mui/material/DialogTitle";
 import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
+import { useEffect } from "react";
 
-export default function FormDialog({ Open }) {
+export default function FormDialog({ Open, handleClickOpen }) {
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   alert("closed");
+  // };
+
+  useEffect(() => {
+    setOpen(Open);
+  }, [Open]);
 
   return (
     <div>
-      {/* 
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
-      <MDButton onClick={handleClickOpen} variant="gradient">
-        Add New
-      </MDButton>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClickOpen}>
         <DialogTitle style={{ width: "500px" }}>Create New</DialogTitle>
 
         <MDBox pt={4} pb={3} px={3}>
