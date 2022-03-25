@@ -42,6 +42,11 @@ import Card from "@mui/material/Card";
 import MDButton from "components/MDButton";
 import Model from "components/Model";
 import EmployeeDetail from "components/Model/EmployeeDetail";
+import * as React from "react";
+import AddTask from "components/Model";
+import AddEmployee from "components/Model/AddEmployee";
+import AddProject from "components/Model/AddProject";
+import { Edit } from "@mui/icons-material";
 
 function DataTable({
   entriesPerPage,
@@ -103,6 +108,12 @@ function DataTable({
     </MDPagination>
   ));
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(!open);
+  };
+
   // Handler for the input to set the pagination index
   const handleInputPagination = ({ target: { value } }) =>
     value > pageOptions.length || value < 0 ? gotoPage(0) : gotoPage(Number(value));
@@ -158,7 +169,7 @@ function DataTable({
   };
 
   return (
-    <TableContainer sx={{ boxShadow: "none" }}>
+    <TableContainer style={{ overflowX: "auto" }} sx={{ boxShadow: "none" }}>
       {entriesPerPage || canSearch ? (
         <MDBox
           display="flex"
@@ -197,11 +208,9 @@ function DataTable({
               </MDTypography>
             </MDBox>
           )}
-
           <MDTypography variant="h6" color="white">
             {title ? title : "Title "}
           </MDTypography>
-
           {canSearch && (
             <MDBox width="12rem" ml="auto" style={{ marginRight: "20px" }}>
               <MDInput
@@ -217,11 +226,19 @@ function DataTable({
               />
             </MDBox>
           )}
-          {openModel && <EmployeeDetail Open={openModel} handleClose={handleClose} />}
+          {/* {openModel && <EmployeeDetail Open={openModel} handleClose={handleClose} />}
 
-          <Model open={true} />
+          <Model open={true} /> */}
+          <MDButton onClick={handleClickOpen} variant="gradient">
+            Add New {title}
+          </MDButton>
+          {openModel && <EmployeeDetail Open={openModel} handleClose={handleClose} />}
+          {title === "Tasks" && <AddTask Open={open} handleClickOpen={handleClickOpen} />}
+          {title === "Employees" && <AddEmployee Open={open} handleClickOpen={handleClickOpen} />}
+          {title === "Projects" && <AddProject Open={open} handleClickOpen={handleClickOpen} />}
         </MDBox>
       ) : null}
+
       <Table {...getTableProps()}>
         <MDBox component="thead">
           {headerGroups.map((headerGroup) => (
@@ -245,7 +262,7 @@ function DataTable({
             return (
               <TableRow
                 {...row.getRowProps()}
-                onClick={() => setOpenModel(true)}
+                // onClick={() => setOpenModel(true)}
                 // style={{ backgroundColor: "green" }}
               >
                 {row.cells.map((cell) => (
@@ -257,6 +274,12 @@ function DataTable({
                     {cell.render("Cell")}
                   </DataTableBodyCell>
                 ))}
+                {title == "Tasks" && (
+                  <Edit
+                    style={{ marginRight: "18px", marginTop: "12px" }}
+                    onClick={() => setOpenModel(true)}
+                  />
+                )}
               </TableRow>
             );
           })}

@@ -9,17 +9,24 @@ import DialogTitle from "@mui/material/DialogTitle";
 import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
+import { useEffect } from "react";
+import MultiSelectEmployees from "components/MultiSelect/MultiSelectEmployees";
 
-export default function FormDialog({ Open }) {
+export default function AddTask({ Open, handleClickOpen }) {
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   alert("closed");
+  // };
+
+  useEffect(() => {
+    setOpen(Open);
+  }, [Open]);
 
   return (
     <div>
@@ -27,11 +34,12 @@ export default function FormDialog({ Open }) {
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button> */}
-      <MDButton onClick={handleClickOpen} variant="gradient">
+      {/* <MDButton onClick={handleClickOpen} variant="gradient">
         Add New Task
       </MDButton>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle style={{ width: "500px" }}>Create New</DialogTitle>
+      <Dialog open={open} onClose={handleClose}> */}
+      <Dialog open={open} onClose={handleClickOpen}>
+        <DialogTitle style={{ width: "500px" }}>Create New Task</DialogTitle>
 
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
@@ -49,7 +57,8 @@ export default function FormDialog({ Open }) {
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Employees</DialogContentText>
-              <MDInput placeholder="Select Employees" type="text" fullWidth />
+              <MultiSelectEmployees />
+              {/* <MDInput placeholder="Select Employees" type="text" fullWidth /> */}
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Date and time</DialogContentText>

@@ -158,7 +158,7 @@ function Tables(props) {
         { Header: "Site Location", accessor: "Site Location", align: "center" },
         { Header: "Start Date", accessor: "Start Date", align: "center" },
         { Header: "Start Time", accessor: "State Time", align: "center" },
-        { Header: "z", accessor: "z", align: "center" },
+        // { Header: "z", accessor: "z", align: "center" },
       ];
     }
     if (props?.title === "Projects") {
