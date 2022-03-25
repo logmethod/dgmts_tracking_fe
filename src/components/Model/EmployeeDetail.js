@@ -8,20 +8,10 @@ import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
 import { ArrowForward } from "@mui/icons-material";
 
-export default function AddEmployeeModel({ Open }) {
-  const [open, setOpen] = React.useState(Open);
-  console.log("open in compo --", Open);
-  const handleClickOpen = (Open) => {
-    setOpen(Open);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function EmployeeDetail({ Open, handleClose }) {
   return (
     <div>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={Open} onClose={() => handleClose(false)}>
         <DialogTitle> Employee Name</DialogTitle>
 
         <MDBox pt={4} pb={3} px={3}>
@@ -78,7 +68,7 @@ export default function AddEmployeeModel({ Open }) {
           <DialogContentText></DialogContentText>
         </DialogContent>
         <DialogActions>
-          <MDButton variant="gradient" color="info" fullWidth>
+          <MDButton variant="gradient" color="info" fullWidth onClick={() => handleClose(false)}>
             Close
           </MDButton>
         </DialogActions>

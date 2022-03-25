@@ -10,7 +10,7 @@ import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
 
-export default function FormDialog({ Open }) {
+export default function AddEmployee({ Open }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -28,7 +28,7 @@ export default function FormDialog({ Open }) {
         Open form dialog
       </Button> */}
       <MDButton onClick={handleClickOpen} variant="gradient">
-        Add New Task
+        Add New Employee
       </MDButton>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle style={{ width: "500px" }}>Create New</DialogTitle>

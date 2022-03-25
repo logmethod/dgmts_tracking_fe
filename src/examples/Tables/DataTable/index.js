@@ -41,7 +41,7 @@ import DataTableBodyCell from "examples/Tables/DataTable/DataTableBodyCell";
 import Card from "@mui/material/Card";
 import MDButton from "components/MDButton";
 import Model from "components/Model";
-import AddEmployeeModel from "components/Model/AddEmployeeModel";
+import EmployeeDetail from "components/Model/EmployeeDetail";
 
 function DataTable({
   entriesPerPage,
@@ -53,7 +53,6 @@ function DataTable({
   noEndBorder,
   title,
 }) {
-  console.log("----titile -----", title);
   const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
   const entries = entriesPerPage.entries
     ? entriesPerPage.entries.map((el) => el.toString())
@@ -153,7 +152,11 @@ function DataTable({
   } else {
     entriesEnd = pageSize * (pageIndex + 1);
   }
-  console.log("---open status--", openModel);
+
+  const handleClose = () => {
+    setOpenModel(false);
+  };
+
   return (
     <TableContainer sx={{ boxShadow: "none" }}>
       {entriesPerPage || canSearch ? (
@@ -214,7 +217,7 @@ function DataTable({
               />
             </MDBox>
           )}
-          {openModel && <AddEmployeeModel Open={openModel} />}
+          {openModel && <EmployeeDetail Open={openModel} handleClose={handleClose} />}
 
           <Model open={true} />
         </MDBox>
@@ -254,7 +257,6 @@ function DataTable({
                     {cell.render("Cell")}
                   </DataTableBodyCell>
                 ))}
-                {/* <Model open={true} /> */}
               </TableRow>
             );
           })}
