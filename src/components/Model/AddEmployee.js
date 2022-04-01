@@ -1,6 +1,4 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -10,19 +8,10 @@ import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
 import { useEffect } from "react";
-import MultiSelectEmployees from "components/MultiSelect/MultiSelectEmployees";
-
-export default function AddTask({ Open, handleClickOpen }) {
+import MultiSelectEmployee from "components/MultiSelect/MultiSelectEmployees";
+import MultipleSelectProject from "components/MultiSelect/MultipleSelectProjects";
+export default function AddEmployee({ Open, handleClickOpen }) {
   const [open, setOpen] = React.useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  //   alert("closed");
-  // };
 
   useEffect(() => {
     setOpen(Open);
@@ -30,16 +19,8 @@ export default function AddTask({ Open, handleClickOpen }) {
 
   return (
     <div>
-      {/* 
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
-      {/* <MDButton onClick={handleClickOpen} variant="gradient">
-        Add New Task
-      </MDButton>
-      <Dialog open={open} onClose={handleClose}> */}
       <Dialog open={open} onClose={handleClickOpen}>
-        <DialogTitle style={{ width: "500px" }}>Create New Task</DialogTitle>
+        <DialogTitle style={{ width: "500px" }}>Create New Employee</DialogTitle>
 
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
@@ -53,12 +34,13 @@ export default function AddTask({ Open, handleClickOpen }) {
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Project Manager</DialogContentText>
-              <MDInput placeholder="Select Project Manager" type="text" fullWidth />
+              {/* <MDInput placeholder="Select Project Manager" type="text" fullWidth /> */}
+              <MultipleSelectProject />
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Employees</DialogContentText>
-              <MultiSelectEmployees />
               {/* <MDInput placeholder="Select Employees" type="text" fullWidth /> */}
+              <MultiSelectEmployee />
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Date and time</DialogContentText>
@@ -69,15 +51,6 @@ export default function AddTask({ Open, handleClickOpen }) {
 
         <DialogContent>
           <DialogContentText></DialogContentText>
-          {/* <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          /> */}
         </DialogContent>
         <DialogActions>
           {/* <Button onClick={handleClose}>Cancel</Button> */}

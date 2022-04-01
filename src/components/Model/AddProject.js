@@ -11,8 +11,9 @@ import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
 import { useEffect } from "react";
 import MultiSelectEmployees from "components/MultiSelect/MultiSelectEmployees";
+import MultipleSelectProject from "components/MultiSelect/MultipleSelectProjects";
 
-export default function AddTask({ Open, handleClickOpen }) {
+export default function AddProject({ Open, handleClickOpen }) {
   const [open, setOpen] = React.useState(false);
 
   // const handleClickOpen = () => {
@@ -39,7 +40,7 @@ export default function AddTask({ Open, handleClickOpen }) {
       </MDButton>
       <Dialog open={open} onClose={handleClose}> */}
       <Dialog open={open} onClose={handleClickOpen}>
-        <DialogTitle style={{ width: "500px" }}>Create New Task</DialogTitle>
+        <DialogTitle style={{ width: "500px" }}>Create New Project</DialogTitle>
 
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
@@ -53,7 +54,8 @@ export default function AddTask({ Open, handleClickOpen }) {
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Project Manager</DialogContentText>
-              <MDInput placeholder="Select Project Manager" type="text" fullWidth />
+              {/* <MDInput placeholder="Select Project Manager" type="text" fullWidth /> */}
+              <MultipleSelectProject />
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Employees</DialogContentText>

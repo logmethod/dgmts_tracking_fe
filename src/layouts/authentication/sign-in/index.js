@@ -55,7 +55,7 @@ function Basic() {
           borderRadius="lg"
           coloredShadow="info"
           mx={2}
-          mt={-3}
+          mt={3}
           p={2}
           mb={1}
           textAlign="center"

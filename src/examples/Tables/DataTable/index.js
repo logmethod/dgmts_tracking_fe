@@ -41,9 +41,12 @@ import DataTableBodyCell from "examples/Tables/DataTable/DataTableBodyCell";
 import Card from "@mui/material/Card";
 import MDButton from "components/MDButton";
 import Model from "components/Model";
-import AddEmployeeModel from "components/Model/AddEmployeeModel";
+import EmployeeDetail from "components/Model/EmployeeDetail";
 import * as React from "react";
-import FormDialog from "components/Model";
+import AddTask from "components/Model";
+import AddEmployee from "components/Model/AddEmployee";
+import AddProject from "components/Model/AddProject";
+import { Edit } from "@mui/icons-material";
 
 function DataTable({
   entriesPerPage,
@@ -55,7 +58,6 @@ function DataTable({
   noEndBorder,
   title,
 }) {
-  console.log("----titile -----", title);
   const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
   const entries = entriesPerPage.entries
     ? entriesPerPage.entries.map((el) => el.toString())
@@ -112,9 +114,6 @@ function DataTable({
     setOpen(!open);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   // Handler for the input to set the pagination index
   const handleInputPagination = ({ target: { value } }) =>
     value > pageOptions.length || value < 0 ? gotoPage(0) : gotoPage(Number(value));
@@ -164,9 +163,13 @@ function DataTable({
   } else {
     entriesEnd = pageSize * (pageIndex + 1);
   }
-  console.log("---open status--", openModel);
+
+  const handleClose = () => {
+    setOpenModel(false);
+  };
+
   return (
-    <TableContainer sx={{ boxShadow: "none" }}>
+    <TableContainer style={{ overflowX: "auto" }} sx={{ boxShadow: "none" }}>
       {entriesPerPage || canSearch ? (
         <MDBox
           display="flex"
@@ -223,11 +226,16 @@ function DataTable({
               />
             </MDBox>
           )}
+          {/* {openModel && <EmployeeDetail Open={openModel} handleClose={handleClose} />}
+
+          <Model open={true} /> */}
           <MDButton onClick={handleClickOpen} variant="gradient">
             Add New {title}
           </MDButton>
-          {openModel && <AddEmployeeModel Open={openModel} />}
-          {title === "Tasks" && <FormDialog Open={open} handleClickOpen={handleClickOpen} />}
+          {openModel && <EmployeeDetail Open={openModel} handleClose={handleClose} />}
+          {title === "Tasks" && <AddTask Open={open} handleClickOpen={handleClickOpen} />}
+          {title === "Employees" && <AddEmployee Open={open} handleClickOpen={handleClickOpen} />}
+          {title === "Projects" && <AddProject Open={open} handleClickOpen={handleClickOpen} />}
         </MDBox>
       ) : null}
 
@@ -254,7 +262,7 @@ function DataTable({
             return (
               <TableRow
                 {...row.getRowProps()}
-                onClick={() => setOpenModel(true)}
+                // onClick={() => setOpenModel(true)}
                 // style={{ backgroundColor: "green" }}
               >
                 {row.cells.map((cell) => (
@@ -266,7 +274,12 @@ function DataTable({
                     {cell.render("Cell")}
                   </DataTableBodyCell>
                 ))}
-                {/* <Model open={true} /> */}
+                {title == "Tasks" && (
+                  <Edit
+                    style={{ marginRight: "18px", marginTop: "12px" }}
+                    onClick={() => setOpenModel(true)}
+                  />
+                )}
               </TableRow>
             );
           })}
