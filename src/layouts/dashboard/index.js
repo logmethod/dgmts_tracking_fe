@@ -35,6 +35,8 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import MapContainer from "../../components/Maps";
+import Maps from "../../components/Maps";
+import WrappedMap from "../../components/Maps";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -42,8 +44,13 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox color="dark" style={{ height: "1025px", width: "500px" }}>
-        <MapContainer />
+      <MDBox color="dark" style={{ height: "1024px", width: "100%" }}>
+        <WrappedMap
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBpI4lcmxMKdnkrrRlZUF-eQanA2ZSDZVI`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
       </MDBox>
 
       <Footer />
