@@ -246,7 +246,7 @@ function DataTable({
             <AddEmployee Open={open} handleClickOpen={handleClickOpen} />
           )}
           {selectModel === "Projects" && (
-            <AddProject Open={open} handleClickOpen={handleClickOpen} />
+            <AddProject Open={open} handleClickOpen={handleClickOpen} Edit={edit} />
           )}
         </MDBox>
       ) : null}
@@ -284,7 +284,7 @@ function DataTable({
                     {...cell.getCellProps()}
                   >
                     {cell.render("Cell")}
-                    {title === "Tasks" && cell.column.Header === "Action" && (
+                    {cell.column.Header === "Action" && (
                       <Edit
                         style={{ marginRight: "18px", marginTop: "12px" }}
                         onClick={() => handleClickOpen(true, row)}

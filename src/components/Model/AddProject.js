@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import MultiSelectEmployees from "components/MultiSelect/MultiSelectEmployees";
 import MultipleSelectProject from "components/MultiSelect/MultipleSelectProjects";
 
-export default function AddProject({ Open, handleClickOpen }) {
+export default function AddProject({ Open, handleClickOpen, Edit }) {
   const [open, setOpen] = React.useState(false);
 
   // const handleClickOpen = () => {
@@ -27,11 +27,11 @@ export default function AddProject({ Open, handleClickOpen }) {
 
   useEffect(() => {
     setOpen(Open);
-  }, [Open]);
+  }, [Open, Edit]);
 
   return (
     <div>
-      {/* 
+      {/*
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button> */}
@@ -40,7 +40,9 @@ export default function AddProject({ Open, handleClickOpen }) {
       </MDButton>
       <Dialog open={open} onClose={handleClose}> */}
       <Dialog open={open} onClose={handleClickOpen}>
-        <DialogTitle style={{ width: "500px" }}>Create New Project</DialogTitle>
+        <DialogTitle style={{ width: "500px" }}>
+          {Edit === true ? "EDIT " : "Create New"} Project
+        </DialogTitle>
 
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">

@@ -80,6 +80,7 @@ function Tables(props) {
         { Header: "Name", accessor: "title", align: "left" },
         { Header: "Site Location", accessor: "site_address", align: "center" },
         { Header: "Contact Number", accessor: "site_contact", align: "center" },
+        { Header: "Action", align: "center" },
       ];
       rows = projectRow && projectRow;
       console.log("rest", rows);
@@ -91,6 +92,7 @@ function Tables(props) {
         { Header: "Contact", accessor: "contact", align: "center" },
         { Header: "Role", accessor: "role", align: "center" },
         { Header: "Report", accessor: "Report", align: "center" },
+        { Header: "Action", align: "center" },
       ];
       rows = employeeRow && employeeRow;
     }
