@@ -72,6 +72,7 @@ function Tables(props) {
         { Header: "Project Manager", accessor: "project_manager", align: "center" },
         { Header: "Start Date", accessor: "start_date", align: "center" },
         { Header: "Project Title", accessor: "project_title", align: "center" },
+        { Header: "Action", align: "center" },
       ];
     }
     if (props?.title === "Projects") {

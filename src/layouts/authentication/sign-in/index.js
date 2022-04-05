@@ -66,9 +66,9 @@ function Basic() {
     // if (isError) {
     //   toast.error(message)
     // }
-    if (!isFetching || user) {
-      navigate("/");
-    }
+    // if (!isFetching) {
+    //   navigate("/");
+    // }
     // dispatch(reset())
   }, [user, isError, isSuccess, navigate, dispatch]);
 

@@ -272,14 +272,14 @@ function DataTable({
                     {...cell.getCellProps()}
                   >
                     {cell.render("Cell")}
+                    {title === "Tasks" && cell.column.Header === "Action" && (
+                      <Edit
+                        style={{ marginRight: "18px", marginTop: "12px" }}
+                        onClick={() => setOpenModel(true)}
+                      />
+                    )}
                   </DataTableBodyCell>
                 ))}
-                {title == "Tasks" && (
-                  <Edit
-                    style={{ marginRight: "18px", marginTop: "12px" }}
-                    onClick={() => setOpenModel(true)}
-                  />
-                )}
               </TableRow>
             );
           })}
