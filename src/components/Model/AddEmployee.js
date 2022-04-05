@@ -8,8 +8,7 @@ import MDButton from "components/MDButton";
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
 import { useEffect } from "react";
-import MultiSelectEmployee from "components/MultiSelect/MultiSelectEmployees";
-import MultipleSelectProject from "components/MultiSelect/MultipleSelectProjects";
+import SingleRoleSelect from "components/SingleSelect/SingleRoleSelect";
 export default function AddEmployee({ Open, handleClickOpen }) {
   const [open, setOpen] = React.useState(false);
 
@@ -25,26 +24,26 @@ export default function AddEmployee({ Open, handleClickOpen }) {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <DialogContentText>Task Title</DialogContentText>
+              <DialogContentText>Name</DialogContentText>
+              <MDInput type="text" fullWidth />
+            </MDBox>
+            <MDBox mb={2}>
+              <DialogContentText>Email</DialogContentText>
               <MDInput type="Email" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <DialogContentText>Project</DialogContentText>
+              <DialogContentText>Password</DialogContentText>
               <MDInput placeholder="Password" type="password" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <DialogContentText>Project Manager</DialogContentText>
+              <DialogContentText>Role</DialogContentText>
               {/* <MDInput placeholder="Select Project Manager" type="text" fullWidth /> */}
-              <MultipleSelectProject />
+              <SingleRoleSelect />
             </MDBox>
+
             <MDBox mb={2}>
-              <DialogContentText>Employees</DialogContentText>
-              {/* <MDInput placeholder="Select Employees" type="text" fullWidth /> */}
-              <MultiSelectEmployee />
-            </MDBox>
-            <MDBox mb={2}>
-              <DialogContentText>Date and time</DialogContentText>
-              <MDInput placeholder="Select date and time" type="text" fullWidth />
+              <DialogContentText>Contact</DialogContentText>
+              <MDInput placeholder="Contact" type="number" fullWidth />
             </MDBox>
           </MDBox>
         </MDBox>

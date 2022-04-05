@@ -25,275 +25,73 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import { getProjects, projectSelector } from "redux/reducers/projects";
+import { userSelector } from "../../redux/reducers/user";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getEmployees, employeeSelector } from "redux/reducers/employee";
+import { getTasks } from "redux/reducers/tasks";
+import { tasksSelector } from "redux/reducers/tasks";
 
 function Tables(props) {
+  const [projectRow, setProjectRow] = useState([]);
+  const [employeeRow, setEmployeeRow] = useState([]);
+  const [tasksRow, setTasksRow] = useState([]);
+  const dispatch = useDispatch();
+
+  const { projects } = useSelector(projectSelector);
+  const { employee } = useSelector(employeeSelector);
+  const { tasks } = useSelector(tasksSelector);
+  console.log("tasks", tasks);
+  const { token } = useSelector(userSelector);
+
+  console.log("project", projects);
+  console.log("row", projectRow);
+  useEffect(() => {
+    projects.length === 0 && dispatch(getProjects({ token }));
+    setProjectRow(projects);
+  }, [projects]);
+
+  useEffect(() => {
+    employee.length === 0 && dispatch(getEmployees({ token }));
+    setEmployeeRow(employee);
+  }, [employee]);
+
+  useEffect(() => {
+    tasks.length === 0 && dispatch(getTasks({ token }));
+    setTasksRow(tasks);
+  }, [tasks]);
+
   const getRows = () => {
     let rows;
     let columns;
     if (props?.title === "Tasks") {
-      rows = [
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Ishaq",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-        {
-          "Reference ID": 73249326565,
-          "Task Title": "14155 SullyField",
-          "Project Manager": "Asad Qurashi",
-          "Assigned To": "Murtaz Haider",
-          "Site Location": "14155 Sullyfield Circle Suite H, Chantilly, VA 20151",
-          "Start Date": "09/05/22",
-          "Start Time": "TBD",
-        },
-      ];
+      rows = tasksRow && tasksRow;
       columns = [
-        { Header: "Reference ID", accessor: "Reference ID", align: "left" },
-        { Header: "Task Title", accessor: "Task Title", align: "left" },
-        { Header: "Project Manager", accessor: "Project Manager", align: "center" },
-        { Header: "Assigned To", accessor: "Assigned To", align: "center" },
-        { Header: "Site Location", accessor: "Site Location", align: "center" },
-        { Header: "Start Date", accessor: "Start Date", align: "center" },
-        { Header: "Start Time", accessor: "State Time", align: "center" },
-        // { Header: "z", accessor: "z", align: "center" },
+        { Header: "Task Title", accessor: "task_title", align: "left" },
+        { Header: "Project Manager", accessor: "project_manager", align: "center" },
+        { Header: "Start Date", accessor: "start_date", align: "center" },
+        { Header: "Project Title", accessor: "project_title", align: "center" },
       ];
     }
     if (props?.title === "Projects") {
       columns = [
-        { Header: "Name", accessor: "Name", align: "left" },
-        { Header: "Site Location", accessor: "Site Location", align: "center" },
-        { Header: "Contact Number", accessor: "Contact Number", align: "center" },
-        { Header: "Contact Name", accessor: "Contact Name", align: "center" },
+        { Header: "Name", accessor: "title", align: "left" },
+        { Header: "Site Location", accessor: "site_address", align: "center" },
+        { Header: "Contact Number", accessor: "site_contact", align: "center" },
       ];
-      rows = [
-        {
-          Name: "Project 1",
-          "Site Location": "14155 Sullyfield Circle, Suite h, Chantilly, VA 20151",
-          "Contact Number": "090078601",
-          "Contact Name": "ASAD",
-        },
-        {
-          Name: "Project 2",
-          "Site Location": "14155 Sullyfield Circle, Suite h, Chantilly, VA 20151",
-          "Contact Number": "090078601",
-          "Contact Name": "Ishaq",
-        },
-        {
-          Name: "Project 2",
-          "Site Location": "14155 Sullyfield Circle, Suite h, Chantilly, VA 20151",
-          "Contact Number": "090078601",
-          "Contact Name": "Ubaid",
-        },
-        {
-          Name: "Project 1",
-          "Site Location": "14155 Sullyfield Circle, Suite h, Chantilly, VA 20151",
-          "Contact Number": "090078601",
-          "Contact Name": "ASAD",
-        },
-        {
-          Name: "Project 2",
-          "Site Location": "14155 Sullyfield Circle, Suite h, Chantilly, VA 20151",
-          "Contact Number": "090078601",
-          "Contact Name": "Ishaq",
-        },
-        {
-          Name: "Project 2",
-          "Site Location": "14155 Sullyfield Circle, Suite h, Chantilly, VA 20151",
-          "Contact Number": "090078601",
-          "Contact Name": "Ubaid",
-        },
-      ];
+      rows = projectRow && projectRow;
+      console.log("rest", rows);
     }
     if (props?.title === "Employees") {
       columns = [
-        { Header: "Name", accessor: "Name", align: "left" },
-        { Header: "Email", accessor: "Email", align: "left" },
-        { Header: "Contact", accessor: "Contact", align: "center" },
-        { Header: "Role", accessor: "Role", align: "center" },
+        { Header: "Name", accessor: "name", align: "left" },
+        { Header: "Email", accessor: "email", align: "left" },
+        { Header: "Contact", accessor: "contact", align: "center" },
+        { Header: "Role", accessor: "role", align: "center" },
         { Header: "Report", accessor: "Report", align: "center" },
       ];
-      rows = [
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-        {
-          Name: "Employee 1",
-          Email: "xyz@gmail.com",
-          Contact: "090078601",
-          Role: "Technician",
-          Report: "View",
-        },
-      ];
+      rows = employeeRow && employeeRow;
     }
 
     return { rows, columns };
@@ -301,6 +99,7 @@ function Tables(props) {
   const columns = getRows().columns;
   const rows = getRows().rows;
 
+  // let test = projectRow.length > 0 ? projectRow : rows;
   return (
     <DashboardLayout>
       <DashboardNavbar />

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Theme, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MDBox from "components/MDBox";
 
 const ITEM_HEIGHT = 48;
@@ -17,18 +17,7 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Hansen",
-  "Van",
-  "Tucker",
-  "Hubbard",
-  "Alexander",
-  "Abbott",
-  "Wagner",
-  "Wilkerson",
-  "Andrews",
-  "Snyder",
-];
+const names = ["Admin", "filed-Inspectior", "project-manager"];
 
 function getStyles(name, personName, theme) {
   return {
@@ -39,7 +28,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelectProject() {
+export default function SingleRoleSelect() {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
@@ -65,7 +54,7 @@ export default function MultipleSelectProject() {
             input={<OutlinedInput />}
             renderValue={(selected) => {
               if (selected.length === 0) {
-                return <em>Select Project</em>;
+                return <em>Select Role</em>;
               }
 
               return selected.join(", ");
@@ -74,7 +63,7 @@ export default function MultipleSelectProject() {
             inputProps={{ "aria-label": "Without label" }}
           >
             <MenuItem disabled value="">
-              <em>Select Project</em>
+              <em>Select Role</em>
             </MenuItem>
             {names.map((name) => (
               <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>

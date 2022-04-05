@@ -13,8 +13,12 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+// import {
+//   loginUser
+// } from "../../redux/reducers/user";
 // react-router-dom components
 import { Link } from "react-router-dom";
 
@@ -40,9 +44,50 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import { loginUser, userSelector } from "redux/reducers/user";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isFetching, isSuccess, isError } = useSelector(userSelector);
+
+  console.log("isFetching", isFetching, isSuccess);
+
+  useEffect(() => {
+    // if (isError) {
+    //   toast.error(message)
+    // }
+    if (!isFetching || user) {
+      navigate("/");
+    }
+    // dispatch(reset())
+  }, [user, isError, isSuccess, navigate, dispatch]);
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const logIn = (e) => {
+    console.log("test");
+    const userData = {
+      email,
+      password,
+    };
+
+    dispatch(loginUser(userData));
+  };
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -84,10 +129,26 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={onChange}
+                label="Email"
+                fullWidth
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                label="Password"
+                fullWidth
+              />
             </MDBox>
             {/*<MDBox display="flex" alignItems="center" ml={-1}>*/}
             {/*  <Switch checked={rememberMe} onChange={handleSetRememberMe} />*/}
@@ -102,11 +163,9 @@ function Basic() {
             {/*  </MDTypography>*/}
             {/*</MDBox>*/}
             <MDBox mt={4} mb={1}>
-              <Link to="/dashboard">
-                <MDButton variant="gradient" color="info" fullWidth>
-                  sign in
-                </MDButton>
-              </Link>
+              <MDButton variant="gradient" color="info" fullWidth onClick={logIn}>
+                sign in
+              </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">

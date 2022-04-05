@@ -11,6 +11,7 @@ import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
 import { useEffect } from "react";
 import MultiSelectEmployees from "components/MultiSelect/MultiSelectEmployees";
+import MultipleSelectProject from "components/MultiSelect/MultipleSelectProjects";
 
 export default function AddTask({ Open, handleClickOpen }) {
   const [open, setOpen] = React.useState(false);
@@ -45,15 +46,16 @@ export default function AddTask({ Open, handleClickOpen }) {
           <MDBox component="form" role="form">
             <MDBox mb={2}>
               <DialogContentText>Task Title</DialogContentText>
-              <MDInput type="Email" fullWidth />
+              <MDInput type="text" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <DialogContentText>Project</DialogContentText>
-              <MDInput placeholder="Password" type="password" fullWidth />
+              <DialogContentText>Projects</DialogContentText>
+              {/* <MDInput placeholder="Project" type="text" fullWidth /> */}
+              <MultipleSelectProject />
             </MDBox>
             <MDBox mb={2}>
-              <DialogContentText>Project Manager</DialogContentText>
-              <MDInput placeholder="Select Project Manager" type="text" fullWidth />
+              <DialogContentText>Task Description</DialogContentText>
+              <MDInput placeholder="Task Description" type="text" fullWidth />
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Employees</DialogContentText>
@@ -62,7 +64,7 @@ export default function AddTask({ Open, handleClickOpen }) {
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Date and time</DialogContentText>
-              <MDInput placeholder="Select date and time" type="text" fullWidth />
+              <MDInput placeholder="Select date and time" type="date" fullWidth />
             </MDBox>
           </MDBox>
         </MDBox>
