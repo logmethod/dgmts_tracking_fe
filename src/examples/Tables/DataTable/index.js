@@ -109,8 +109,14 @@ function DataTable({
   ));
 
   const [open, setOpen] = React.useState(false);
+  const [selectModel, setSelectModel] = React.useState("");
+  const [edit, setEdit] = React.useState(false);
+  const [task, setTask] = React.useState({});
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (editMode = false, obj) => {
+    setSelectModel(title);
+    editMode && setTask(obj);
+    setEdit(editMode);
     setOpen(!open);
   };
 
@@ -233,9 +239,15 @@ function DataTable({
             Add New {title}
           </MDButton>
           {openModel && <EmployeeDetail Open={openModel} handleClose={handleClose} />}
-          {title === "Tasks" && <AddTask Open={open} handleClickOpen={handleClickOpen} />}
-          {title === "Employees" && <AddEmployee Open={open} handleClickOpen={handleClickOpen} />}
-          {title === "Projects" && <AddProject Open={open} handleClickOpen={handleClickOpen} />}
+          {selectModel === "Tasks" && (
+            <AddTask Open={open} handleClickOpen={handleClickOpen} Edit={edit} Task={task} />
+          )}
+          {selectModel === "Employees" && (
+            <AddEmployee Open={open} handleClickOpen={handleClickOpen} />
+          )}
+          {selectModel === "Projects" && (
+            <AddProject Open={open} handleClickOpen={handleClickOpen} />
+          )}
         </MDBox>
       ) : null}
 
@@ -275,7 +287,7 @@ function DataTable({
                     {title === "Tasks" && cell.column.Header === "Action" && (
                       <Edit
                         style={{ marginRight: "18px", marginTop: "12px" }}
-                        onClick={() => setOpenModel(true)}
+                        onClick={() => handleClickOpen(true, row)}
                       />
                     )}
                   </DataTableBodyCell>

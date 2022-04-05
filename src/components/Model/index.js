@@ -12,9 +12,11 @@ import MDInput from "components/MDInput";
 import { useEffect } from "react";
 import MultiSelectEmployees from "components/MultiSelect/MultiSelectEmployees";
 import MultipleSelectProject from "components/MultiSelect/MultipleSelectProjects";
+import { Task } from "@mui/icons-material";
 
-export default function AddTask({ Open, handleClickOpen }) {
+export default function AddTask({ Open, handleClickOpen, Edit, Task }) {
   const [open, setOpen] = React.useState(false);
+  // const [edit, setEdit] = React.useState(false);
 
   // const handleClickOpen = () => {
   //   setOpen(true);
@@ -27,11 +29,12 @@ export default function AddTask({ Open, handleClickOpen }) {
 
   useEffect(() => {
     setOpen(Open);
-  }, [Open]);
+    // setEdit(Edit);
+  }, [Open, Edit, Task]);
 
   return (
     <div>
-      {/* 
+      {/*
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button> */}
@@ -40,18 +43,24 @@ export default function AddTask({ Open, handleClickOpen }) {
       </MDButton>
       <Dialog open={open} onClose={handleClose}> */}
       <Dialog open={open} onClose={handleClickOpen}>
-        <DialogTitle style={{ width: "500px" }}>Create New Task</DialogTitle>
+        <DialogTitle style={{ width: "500px" }}>
+          {Edit === true ? "Edit" : "Create New "} Task {console.log("Edit", Edit)}
+        </DialogTitle>
 
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
               <DialogContentText>Task Title</DialogContentText>
-              <MDInput type="text" fullWidth />
+              <MDInput type="text" fullWidth value={Task?.values?.task_title} />
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Projects</DialogContentText>
               {/* <MDInput placeholder="Project" type="text" fullWidth /> */}
-              <MultipleSelectProject />
+              {Edit === true ? (
+                <MDInput type="text" fullWidth value={Task?.values?.project_title} disabled />
+              ) : (
+                <MultipleSelectProject />
+              )}
             </MDBox>
             <MDBox mb={2}>
               <DialogContentText>Task Description</DialogContentText>
