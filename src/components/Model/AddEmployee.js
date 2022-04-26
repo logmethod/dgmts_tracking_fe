@@ -26,8 +26,6 @@ export default function AddEmployee({ Open, handleClickOpen, Edit, Employee }) {
   const values = Employee && Employee?.values;
   const [formData, setFormData] = React.useState({});
 
-  // console.log("test", handleClickOpen());
-
   const dispatch = useDispatch();
 
   let { successMessage, isSuccess, isError, errorMessage, isFetching } =

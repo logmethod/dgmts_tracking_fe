@@ -149,7 +149,6 @@ function DataTable({
 
   const dispatch = useDispatch();
   const handleClickOpen = (editMode = false, action = "", obj) => {
-    console.log("test");
     setSelectModel(action);
     editMode && action.toLowerCase() === "tasks" && setTask(obj);
 
@@ -297,6 +296,7 @@ function DataTable({
                   value={search}
                   size="small"
                   fullWidth
+                  Autocomplete="off"
                   onChange={({ currentTarget }) => {
                     setSearch(search);
                     onSearchChange(currentTarget.value);

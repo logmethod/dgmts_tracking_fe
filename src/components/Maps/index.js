@@ -110,28 +110,25 @@ const Maps = () => {
   return (
     <GoogleMap defaultZoom={5} defaultCenter={center}>
       {data.map((park) => (
-        <>
-          {console.log(park)}
-          <Marker
-            key={park.id}
-            position={{
-              lat: park?.record.current_location?.lat,
-              lng: park?.record.current_location?.lng,
-            }}
-            onClick={() => {
-              setSelectedPark(park);
-              setCenter({
-                lat: selectedPark?.record.current_location?.lat,
-                lng: selectedPark?.record.current_location?.lng,
-              });
-              setZoom(12);
-            }}
-            icon={{
-              // url: `/skateboarding.svg`,
-              scaledSize: new window.google.maps.Size(25, 25),
-            }}
-          />
-        </>
+        <Marker
+          key={park.id}
+          position={{
+            lat: park?.record.current_location?.lat,
+            lng: park?.record.current_location?.lng,
+          }}
+          onClick={() => {
+            setSelectedPark(park);
+            setCenter({
+              lat: selectedPark?.record.current_location?.lat,
+              lng: selectedPark?.record.current_location?.lng,
+            });
+            setZoom(12);
+          }}
+          icon={{
+            // url: `/skateboarding.svg`,
+            scaledSize: new window.google.maps.Size(25, 25),
+          }}
+        />
       ))}
 
       {selectedPark && (

@@ -60,7 +60,12 @@ export default function MultipleSelectPlaceholder({ setManager }) {
           <Select
             displayEmpty
             value={personName}
-            style={{ paddingTop: "10px", paddingBottom: "10px" }}
+            style={{
+              paddingTop: "12px",
+              paddingBottom: "12px",
+              marginLeft: "-7px",
+              marginRight: "-2px",
+            }}
             onChange={handleChange}
             input={<OutlinedInput value={personName} />}
             renderValue={(selected) => {

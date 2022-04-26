@@ -93,8 +93,7 @@ export default function User() {
           {...action}
           handleClose={() => setAction({ state: false, type: "", data: null })}
         />
-        <IconButton>
-          {" "}
+        <IconButton onClick={handleClick}>
           <Avatar
             name={name}
             size="50"
@@ -102,7 +101,6 @@ export default function User() {
             aria-describedby={id}
             type="button"
             className={Style.profileBtn}
-            onClick={handleClick}
           />
         </IconButton>
         {/* <button
