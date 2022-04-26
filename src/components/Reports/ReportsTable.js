@@ -39,15 +39,7 @@ const useStyles = makeStyles(() => ({
 const ReportsTable = ({ data }) => {
   const dispatch = useDispatch();
   const { reports } = useSelector(reportsSelector);
-  console.log("reports", reports);
   const classes = useStyles();
-  // const [state, setState] = useState([
-  //   {
-  //     startDate: new Date(),
-  //     endDate: null,
-  //     key: "selection",
-  //   },
-  // ]);
 
   const [report, setReport] = useState(null);
   const [startDate, setStartDate] = useState("");

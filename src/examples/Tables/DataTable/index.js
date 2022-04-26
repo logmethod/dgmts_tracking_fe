@@ -292,11 +292,12 @@ function DataTable({
               <MDBox width="12rem" ml="auto" style={{ marginRight: "20px" }}>
                 <MDInput
                   style={{ backgroundColor: "white", borderRadius: "5px" }}
-                  placeholder="Search.s.."
+                  placeholder="Search..."
                   value={search}
                   size="small"
+                  InputProps={{ autoComplete: "off" }}
+                  color="success"
                   fullWidth
-                  Autocomplete="off"
                   onChange={({ currentTarget }) => {
                     setSearch(search);
                     onSearchChange(currentTarget.value);

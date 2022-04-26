@@ -30,7 +30,6 @@ export const creatTask = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      console.log("token=>", token);
       const response = await fetch(`${BASE_URL}tasks/create`, {
         method: "POST",
         headers: {

@@ -87,9 +87,6 @@ export default function PasswordEdit({ state, data, type, handleClose }) {
           <TextField
             autoFocus
             margin="dense"
-            id="password"
-            label="Password"
-            type="password"
             fullWidth
             variant="standard"
             onChange={(e) => setPassword(e.target.value)}
